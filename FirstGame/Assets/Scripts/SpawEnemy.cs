@@ -9,7 +9,7 @@ public class SpawEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var enemy = Instantiate(Zombie, SpawnPos.position, Quaternion.identity);
+        var enemy = Instantiate(Zombie, SpawnPos.position, SpawnPos.rotation);
     }
 
     // Update is called once per frame

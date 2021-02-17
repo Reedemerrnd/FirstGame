@@ -4,7 +4,7 @@ using UnityEngine;
 public class FPSInput : MonoBehaviour
 {
     public float speed = 0.01f;
-    public float gravity = -98f;
+    public float gravity = -9.9f;
     private CharacterController _charController;
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,7 @@ public class FPSInput : MonoBehaviour
     {
         float deltaX = Input.GetAxis("Horizontal") * speed;
         float deltaZ = Input.GetAxis("Vertical") * speed;
-        
+
         Vector3 movement = new Vector3(deltaX, 0, deltaZ);
         movement = Vector3.ClampMagnitude(movement, speed);
         movement.y = gravity;

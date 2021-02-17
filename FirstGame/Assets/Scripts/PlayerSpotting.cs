@@ -10,8 +10,7 @@ public class PlayerSpotting : MonoBehaviour
         AIWander parent = transform.parent.GetComponent<AIWander>();
         if (other.tag == "Player")
         {
-            parent.playerSpotted = true;
-            parent.player = other.gameObject;
+            parent.TargetSpotted(other.gameObject);
         }
     }
 }

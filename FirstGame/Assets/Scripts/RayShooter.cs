@@ -7,6 +7,7 @@ public class RayShooter : MonoBehaviour
     private Camera _cam;
     public Texture cross;
     public float damage = 2.0f;
+    public ParticleSystem particle;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,19 +26,22 @@ public class RayShooter : MonoBehaviour
             
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject hitObj = hit.transform.gameObject;
                 
-                AIWander target = hitObj.GetComponent<AIWander>();
+                AIHealth target = hitObj.GetComponent<AIHealth>();
                 if (target != null)
                 {
-                    target.Hit(damage);
+                    target.Hit(damage, gameObject);
 
                 }
                 else
-                    HitPoint(hit.point);
+                {
+                    //HitPoint(hit.point);
+                    Instantiate(particle, hit.point, hit.transform.rotation);
+                    Debug.Log(hitObj);
+                }
                 
                 //Debug.DrawRay(Input.mousePosition, hit.point, Color.red);
             }

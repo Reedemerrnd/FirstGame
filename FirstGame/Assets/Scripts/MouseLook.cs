@@ -7,6 +7,7 @@ public class MouseLook : MonoBehaviour
     
     
     [SerializeField]Camera _cam;
+    CharacterController body;
     public float sensivityHor = 9.0f;
     public float sensivityVer = 9.0f;
     
@@ -14,11 +15,10 @@ public class MouseLook : MonoBehaviour
     public float maxVert = 45.0f;
 
     private float _rotationX = 0;
-    void Start()
+
+    private void Start()
     {
-        
-        Rigidbody body = GetComponent<Rigidbody>();
-        if (body != null) body.freezeRotation = true;
+        body = GetComponent<CharacterController>();
     }
     // Update is called once per frame
     void Update()
@@ -28,8 +28,8 @@ public class MouseLook : MonoBehaviour
             _rotationX = Mathf.Clamp(_rotationX, minVert, maxVert);
 
             float delta = Input.GetAxis("Mouse X") * sensivityHor;
-            float rotationY = transform.localEulerAngles.y + delta;
-            transform.localEulerAngles = new Vector3(0, rotationY, 0);
+            float rotationY = body.transform.localEulerAngles.y + delta;
+            body.transform.localEulerAngles = new Vector3(0, rotationY, 0);
             _cam.transform.localEulerAngles = new Vector3(_rotationX, 0, 0);
        
     }
