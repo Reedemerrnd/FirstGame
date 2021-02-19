@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class RayShooter : MonoBehaviour
 {
+    enum Mode
+    {
+        Ray,
+        Mine
+    }
+    [SerializeField] Mode shootMode = Mode.Ray;
     private Camera _cam;
     public Texture cross;
-    public float damage = 2.0f;
+    [SerializeField] float _damage = 3.0f;
+    public float Damage { get => _damage; }
     public ParticleSystem particle;
+    public GameObject mine;
+    public ParticleSystem shots;
     // Start is called before the first frame update
     void Start()
     {
-        _cam = GetComponent<Camera>();
+        _cam = transform.Find("MainCam").GetComponent<Camera>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -19,39 +28,47 @@ public class RayShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
+            if (!shots.isPlaying)
+            {
+                shots.Play();
+            }
+        }
 
-
-            
+        if (Input.GetMouseButtonDown(1))
+        {
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                GameObject hitObj = hit.transform.gameObject;
-                
-                AIHealth target = hitObj.GetComponent<AIHealth>();
-                if (target != null)
+                if (shootMode == Mode.Ray)
                 {
-                    target.Hit(damage, gameObject);
+                    GameObject hitObj = hit.transform.gameObject;
 
+                    AIHealth target = hitObj.GetComponent<AIHealth>();
+                    if (target != null)
+                    {
+                        target.Hit(_damage, gameObject);
+
+                    }
+                    else
+                    {
+                        Instantiate(particle, hit.point, hit.transform.rotation);
+                        Debug.Log(hitObj);
+                    }
                 }
-                else
+                else if (shootMode == Mode.Mine)
                 {
-                    //HitPoint(hit.point);
-                    Instantiate(particle, hit.point, hit.transform.rotation);
-                    Debug.Log(hitObj);
+                    Instantiate(mine, hit.point, Quaternion.identity);
                 }
-                
-                //Debug.DrawRay(Input.mousePosition, hit.point, Color.red);
-            }
+            
+        }
         }
     }
-    private void HitPoint(Vector3 point)
+    public void DoubleDamage()
     {
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.position = point;
-        Destroy(sphere, 3);
+        _damage *= 2;
     }
     private void OnGUI()
     {

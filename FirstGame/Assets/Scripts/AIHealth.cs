@@ -16,7 +16,7 @@ public class AIHealth : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         wander.TargetSpotted(other.transform.parent.gameObject);
-         var dmg = other.transform.parent.GetComponent<ParticleShooter>().Damage;
+         var dmg = other.transform.parent.GetComponent<RayShooter>().Damage;
         Hit(dmg);
     }
 

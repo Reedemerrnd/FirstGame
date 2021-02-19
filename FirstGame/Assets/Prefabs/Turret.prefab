@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1469414806094517389}
   - component: {fileID: 9082016624124147780}
   m_Layer: 2
-  m_Name: Cylinder (1)
+  m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a2e142cf68d8be94f9d081e5f0282688, type: 2}
+  - {fileID: 2100000, guid: 8765f6007816a4345ab60c0bd8d227e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,7 +91,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 926966633381790408}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -187,7 +187,7 @@ SphereCollider:
   m_GameObject: {fileID: 3801774953192092329}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -297,6 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1489566323401484976}
   - component: {fileID: 3310737999893834037}
+  - component: {fileID: 7478493103863323717}
   m_Layer: 2
   m_Name: Turret
   m_TagString: Untagged
@@ -334,3 +335,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 3}
+--- !u!114 &7478493103863323717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9183839233367341453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526da705568585246a283e962ccd483b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletPref: {fileID: 6747377570335374924, guid: 5052d394c67e45b42bf746df5a66c372, type: 3}
+  _speed: 0.5

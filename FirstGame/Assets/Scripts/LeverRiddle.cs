@@ -8,7 +8,9 @@ public class LeverRiddle : MonoBehaviour
     public bool Avtivated { get=> _isActive;}
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
         _isActive = true;
+        transform.parent.GetComponent<Riddle>().CheckLevers();
     }
     public void Deactivate()
     {
