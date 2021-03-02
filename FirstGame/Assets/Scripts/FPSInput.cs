@@ -28,7 +28,7 @@ public class FPSInput : MonoBehaviour
         _inputs = transform.TransformDirection(_inputs);
 
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y<=0.2f)
         {
             transform.GetComponent<Rigidbody>()
                 .AddForce(
