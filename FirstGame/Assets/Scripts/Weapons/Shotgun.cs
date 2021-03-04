@@ -23,8 +23,6 @@ public class Shotgun : MonoBehaviour,IWeapon
     }
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("part coll");
-        Debug.Log(other.tag);
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<Health>().Hit(_damage, Shooter);
